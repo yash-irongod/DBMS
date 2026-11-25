@@ -1,0 +1,87 @@
+erDiagram
+    CITY ||--o{ LOCALITY : contains
+    LOCALITY ||--o{ LISTING : locates
+    APP_USER o|--o{ LISTING : posts
+    APP_USER ||--o| ROOMMATE_PROFILE : has
+    LISTING ||--o{ LISTING_AMENITY : includes
+    AMENITY ||--o{ LISTING_AMENITY : classifies
+    APP_USER ||--o{ SAVED_LISTING : saves
+    LISTING ||--o{ SAVED_LISTING : is_saved
+    APP_USER ||--o{ ENQUIRY : submits
+    LISTING ||--o{ ENQUIRY : receives
+    APP_USER ||--o{ ROOMMATE_REQUEST : requester
+    APP_USER ||--o{ ROOMMATE_REQUEST : recipient
+
+    CITY {
+        bigint city_id PK
+        varchar city_name UK
+    }
+    LOCALITY {
+        bigint locality_id PK
+        bigint city_id FK
+        varchar locality_name
+    }
+    APP_USER {
+        bigint user_id PK
+        varchar full_name
+        varchar email UK
+        varchar user_role
+        timestamp created_at
+    }
+    LISTING {
+        bigint listing_id PK
+        bigint owner_user_id FK
+        bigint locality_id FK
+        varchar title
+        varchar listing_kind
+        varchar source_property_type
+        numeric rent_amount
+        varchar rent_period
+        numeric size_sqft
+        smallint bedrooms
+        smallint bathrooms
+        varchar furnishing_status
+        varchar availability_status
+        varchar data_origin
+        timestamp last_verified_at
+    }
+    AMENITY {
+        bigint amenity_id PK
+        varchar amenity_name UK
+    }
+    LISTING_AMENITY {
+        bigint listing_id PK, FK
+        bigint amenity_id PK, FK
+    }
+    ROOMMATE_PROFILE {
+        bigint user_id PK, FK
+        numeric budget_min
+        numeric budget_max
+        date move_in_date
+        varchar food_preference
+        varchar smoking_preference
+        varchar pets_preference
+        varchar sleep_schedule
+        varchar cleanliness_preference
+    }
+    SAVED_LISTING {
+        bigint user_id PK, FK
+        bigint listing_id PK, FK
+        timestamp saved_at
+    }
+    ENQUIRY {
+        bigint enquiry_id PK
+        bigint user_id FK
+        bigint listing_id FK
+        text message
+        varchar enquiry_status
+        timestamp created_at
+    }
+    ROOMMATE_REQUEST {
+        bigint request_id PK
+        bigint requester_user_id FK
+        bigint recipient_user_id FK
+        text message
+        varchar request_status
+        timestamp created_at
+    }

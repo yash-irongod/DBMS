@@ -1,0 +1,5 @@
+City,Source file,Rows,Exact duplicate rows,Unique locality values,Median raw price INR,Median parsed size sqft,Missing bathrooms,Missing balconies,Missing isNegotiable,Missing priceSqFt,Missing description,Notes
+Delhi,Indian_housing_Delhi_data.csv,5000,466,288,125000,2500,25,2263,4821,5000,285,"Property mix is dominated by independent floors; price distribution should be validated before rent comparisons"
+Mumbai,Indian_housing_Mumbai_data.csv,5000,371,189,40000,900,14,4267,4429,5000,78,"Mostly apartments; relative posting-age labels are not reliable absolute dates"
+Pune,Indian_housing_Pune_data.csv,3910,226,225,18000,980,17,2089,3384,3910,468,"Apartment-heavy listings; high description missingness relative to Mumbai"
+TOTAL,archive.zip,13910,1063,NA,NA,NA,56,8619,12634,13910,831,"Raw totals; 15 additional potential duplicates identified under a normalized key that ignores relative posting age"
